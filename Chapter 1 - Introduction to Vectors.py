@@ -40,7 +40,7 @@ linear_combination = c*v + d*w
 print("Linear combination cv + dw = ", linear_combination)
 
 
-# In[31]:
+# In[33]:
 
 
 # Create a figure
@@ -66,13 +66,12 @@ fig.add_trace(go.Scatter(x=[0 ,linear_combination[0]], y=[0,linear_combination[1
                          marker = dict(size = 8)))
 
 # Set the layout
-fig.update_layout(title="Vector Addition in 2D",
-                  xaxis=dict(range=[0, 5], zeroline=True, title="X"),
-                  yaxis=dict(range=[0, 5], zeroline=True, title="Y"),
-                  showlegend=True,
-                  width=600, height=600,)
-
-fig.update_xaxes(scaleanchor="y", scaleratio=1)
+fig.update_layout(title = "Vector Addition in 2D",
+                  xaxis = dict(range=[0, 5], zeroline = True, title = 'X'),
+                  yaxis = dict(range=[0, 5], zeroline = True, title = 'Y'),
+                  showlegend = True,
+                  width=600,
+                  height=600)
 
 # Show the plot
 fig.show()
