@@ -2,7 +2,6 @@
 # coding: utf-8
 
 # # Chapter 1: Introduction to Vectors
-# 
 
 # The heart of linear algebra lies in two operations:
 # 1. Sum
@@ -77,7 +76,75 @@ fig.update_layout(title = "Vector Addition in 2D",
 fig.show()
 
 
-# In[2]:
+# ### 1.1 Vectors and Linear Combinations
+
+# ### Vector Addition<br>
+# Let $v$ be a 2-dimensional vector with components 
+# $\begin{align}
+# \vec{v} = 
+# \begin{bmatrix}
+# v1 \\
+# v2\end{bmatrix}
+# \end{align}$
+# 
+# Let $w$ be a 2-dimensional vector with components 
+# $\begin{align}
+# \vec{w} = 
+# \begin{bmatrix}
+# w1 \\
+# w2\end{bmatrix}
+# \end{align}$
+# 
+# The addition of the two vectors then looks like: <br>
+# $\begin{align}
+# \vec{v} + \vec{w} = 
+# \begin{bmatrix}
+# v1 + w1 \\
+# v2 + w2\end{bmatrix}
+# \end{align}$
+# 
+# This is essentially how **vector addition** looks like.
+# 
+# **Subtraction** occurs follows the same principle.
+# ### Scalar Multiplication<br>
+# Going back to the vector $v$. If we multiply a constant $c$ to $v$ where $c$ can be any real number then we get the follow:
+# $\begin{align}
+# c\vec{v} = 
+# \begin{bmatrix}
+# cv1 \\
+# cv2\end{bmatrix}
+# \end{align}$
+# 
+# This $c$ constant is called the scalar and this operation is called **scalar multiplication**.
+# 
+# ### Notice that the sum of -v and v is the zero vector. This is 0, which is not the same as the number zero! The vector 0 has components 0 and 0.
+# ### What does this mean?
+# ### Zero Vector $\vec{0}$
+# - The zero vector, often denoted as $\vec{0}$, is a vector in a vector space where all of its components are zero.
+# - For example, in 2-dimensional space, the zero vector is $\vec{0} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}$. In 3-dimensional space, it would be $\vec{0} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}$.
+# - The zero vector has both a magnitude of zero and no specific direction.
+# - It is the additive identity in vector spaces, meaning for any vector $\vec{v}$, adding the zero vector results in $\vec{v}$ itself: $\vec{v} + \vec{0} = \vec{v}$.
+# 
+# ### Number Zero ($0$)
+# - The number zero is a scalar, a real number (or a complex number, depending on the context) that represents the absence of any quantity.
+# - It is the additive identity in the field of real numbers (or any other number field), meaning for any real number $x$, adding zero results in $x$: $x + 0 = x$.
+# 
+# ### Key Differences
+# - **Nature**: The zero vector is a vector, which means it has components, and it exists in a vector space. The number zero is a scalar, existing in a number field like the real numbers.
+# - **Representation**: The zero vector is written as a vector (e.g., $\begin{bmatrix} 0 \\ 0 \end{bmatrix}$ in 2D), while the number zero is written as $0$.
+# - **Context of Use**: The zero vector is used in operations involving vectors, while the number zero is used in operations involving scalars.
+# 
+# ### Example
+# If you have a vector $\vec{v} = \begin{bmatrix} 2 \\ 3 \end{bmatrix}$, the negative of this vector is $-\vec{v} = \begin{bmatrix} -2 \\ -3 \end{bmatrix}$. Adding these gives the zero vector:
+# 
+# $
+# \vec{v} + (-\vec{v}) = \begin{bmatrix} 2 \\ 3 \end{bmatrix} + \begin{bmatrix} -2 \\ -3 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}
+# $
+# 
+# This result is the zero vector $\vec{0}$, not the number zero.
+# 
+
+# In[ ]:
 
 
 
