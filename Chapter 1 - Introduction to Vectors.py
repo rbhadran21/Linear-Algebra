@@ -156,12 +156,71 @@ fig.update_layout(width = 600,
                   height = 600)
 
 
-# 
-# This result is the zero vector $\vec{0}$, not the number zero.
-# 
+# This result is the zero vector $\vec{0}$, not the number zero.<br>
+# This is also a good way to show that it doesnt really matter how you add 2 vectors they will result in the same output.
 
-# In[ ]:
-
+# In[30]:
 
 
+v = np.array([4, 2])
+w = np.array([-1, 2])
+v_1 = (-1)*v
+w_1 = (-1)*w
+sum_vw = v + w
+diff_vw = v - w
+
+fig = go.Figure()
+
+fig.add_trace(go.Scatter(x = [0, v[0]],
+                         y = [0, v[1]],
+                         mode = "lines+markers",
+                         name = "v",
+                         line = dict(color = "grey")))
+
+fig.add_trace(go.Scatter(x = [v[0], sum_vw[0]],
+                         y = [v[1], sum_vw[1]],
+                         name = "w'",
+                         mode = "lines+markers",
+                         line = dict(color = "grey", dash = 'dot')))
+
+fig.add_trace(go.Scatter(x = [0, w[0]],
+                         y = [0, w[1]],
+                         mode = "lines+markers",
+                         name = "w",
+                         line = dict(color = "grey")))
+
+fig.add_trace(go.Scatter(x = [w[0], sum_vw[0]],
+                         y = [w[1], sum_vw[1]],
+                         mode = "lines+markers",
+                         name = "v'",
+                         line = dict(color = "grey", dash = 'dot')))
+
+fig.add_trace(go.Scatter(x = [0, v_1[0]],
+                         y = [0, v_1[1]],
+                         mode = "lines+markers",
+                         name = "-v",
+                         line = dict(color = "grey", dash ="dot")))
+
+fig.add_trace(go.Scatter(x = [0, w_1[0]],
+                         y = [0, w_1[1]],
+                         mode = "lines+markers",
+                         name = "-w",
+                         line = dict(color = "grey", dash ="dot")))
+
+fig.add_trace(go.Scatter(x = [0, sum_vw[0]],
+                         y = [0, sum_vw[1]],
+                         mode = "lines+markers",
+                         name = "v+w",
+                         line = dict(color = "grey")))
+
+fig.add_trace(go.Scatter(x = [0, diff_vw[0]],
+                         y = [0, diff_vw[1]],
+                         mode = "lines+markers",
+                         name = "v-w",
+                         line = dict(color = "grey", dash ="dot")))
+
+fig.update_layout(xaxis = dict(range = [-6,6], title = "X"),
+                  yaxis = dict(range = [-6,6], title = "Y"),
+                  width = 800,
+                  height = 800)
 
