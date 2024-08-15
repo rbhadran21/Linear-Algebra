@@ -16,7 +16,7 @@
 # We can multiply each vector by each constant to get: $c\mathbf{x} $ and $d\mathbf{y}$<br>
 # A linear combination is the combination of the two operations: $c\mathbf{x} + d\mathbf{y}$
 
-# In[14]:
+# In[2]:
 
 
 import pandas as pd
@@ -135,11 +135,27 @@ fig.show()
 # - **Context of Use**: The zero vector is used in operations involving vectors, while the number zero is used in operations involving scalars.
 # 
 # ### Example
-# If you have a vector $\vec{v} = \begin{bmatrix} 2 \\ 3 \end{bmatrix}$, the negative of this vector is $-\vec{v} = \begin{bmatrix} -2 \\ -3 \end{bmatrix}$. Adding these gives the zero vector:
 # 
-# $
-# \vec{v} + (-\vec{v}) = \begin{bmatrix} 2 \\ 3 \end{bmatrix} + \begin{bmatrix} -2 \\ -3 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}
-# $
+
+# In[7]:
+
+
+v = np.array([2,3])
+w = (-1)*v
+print("v + (-v)",v + w)
+
+fig = go.Figure()
+
+fig.add_trace(go.Scatter(x = [0, v[0]],
+                         y = [0, v[1]],))
+
+fig.add_trace(go.Scatter(x = [0, w[0]],
+                         y = [0, w[1]],))
+
+fig.update_layout(width = 600,
+                  height = 600)
+
+
 # 
 # This result is the zero vector $\vec{0}$, not the number zero.
 # 
