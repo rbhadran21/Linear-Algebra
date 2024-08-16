@@ -238,7 +238,7 @@ fig.update_layout(xaxis = dict(range = [-6,6], title = "X"),
 # Vector Addition example:
 # 
 
-# In[51]:
+# In[55]:
 
 
 v = np.array([1, 1, -1])
@@ -253,28 +253,32 @@ fig.add_trace(go.Scatter3d(x = [0, v[0]],
                          z = [0, v[2]],
                          mode = "lines+markers",
                          marker = dict(size = 4),
-                         line = dict(color = 'red', width = 4, dash = "dot")))
+                         line = dict(color = 'red', width = 4),
+                         name = "v"))
 
 fig.add_trace(go.Scatter3d(x = [0, -v[0]],
                          y = [0, -v[1]],
                          z = [0, -v[2]],
                          mode = "lines+markers",
                          marker = dict(size = 4),
-                         line = dict(color = 'red', width = 4, dash = "dot")))
+                         line = dict(color = 'red', width = 4, dash = "dot"),
+                         name = "-v"))
 
 fig.add_trace(go.Scatter3d(x = [0, w[0]],
                          y = [0, w[1]],
                          z = [0, w[2]],
                          mode = "lines+markers",
                          marker = dict(size = 4),
-                         line = dict(color = 'blue', width = 4, dash = "dot")))
+                         line = dict(color = 'blue', width = 4),
+                         name = "w"))
 
 fig.add_trace(go.Scatter3d(x = [0, -w[0]],
                          y = [0, -w[1]],
                          z = [0, -w[2]],
                          mode = "lines+markers",
                          marker = dict(size = 4),
-                         line = dict(color = 'blue', width = 4, dash = "dot")))
+                         line = dict(color = 'blue', width = 4, dash = "dot"),
+                         name = "-w"))
 
 fig.update_layout(
     scene = dict(
@@ -282,14 +286,110 @@ fig.update_layout(
         yaxis = dict(range=[-6,6], title = "Y"),
         zaxis = dict(range=[-6,6], title = "Z")
         ),
-    title = "3D Vector"
+    title = "3-D Vectors V & W and their inverse in 3-D Space"
 )
 
 
-# In[ ]:
+# ### Worked out examples and select questions from the textbook
+
+# 1. The linear combinations of $\vec{v}$ = (1, 1, 0) and $\vec{w}$ = (0, 1, 1) fill a plane. Describe that plane. Find a vector that is not a combination of $\vec{v}$ and $\vec{w}$. 
+# 
+# $\vec{v}$ = (1,1,0)
+# $\vec{w}$ = (0,1,1)
+# 
+# Linear Combination with $c$ & $d$ = $c\vec{v} + d\vec{w}$ = ($c$, $c+d$, $d$)
+# 
+# Given that this linear combination fills a plane, let $\vec{u}$ be one of the vectors that fills the plane.
+# 
+# $\begin{align}
+# \vec{u} = 
+# \begin{bmatrix}
+# c \\
+# c + d \\
+# d
+# \end{bmatrix}
+# \end{align}$
+# 
+# From this vector definition we can see that $u2$ is defined by the sum of $u1$ & $u3$. Any vector which doesnt follow this rule is not on the plane.
+# 
+
+# In[78]:
 
 
+v = np.array([1, 1, 0])
+w = np.array([0, 1, 1])
 
+def linear_combination(c, d):
+    return c * v + d * w
+
+def is_in_plane(vector):
+    x, y, z = vector
+    return np.isclose(y, x + z)
+
+def vector_in_place(u1, u2, u3):
+    u = np.array([u1, u2, u3])
+    in_plane = is_in_plane(u)
+    print("Is vector u = ", u, " on the plane?", in_plane)
+    
+vector_in_place(1,2,3)
+vector_in_place(1,2,1)
+vector_in_place(1,2,0)
+
+
+# 2. Find two equations for the unknowns c and d so that the linear combination $c\vec{v}$ + $d\vec{w}$ equals the vector $\vec{b}$: 
+# 
+# $\begin{align}
+# \vec{v} = 
+# \begin{bmatrix}
+# 2 \\
+# -1 \end{bmatrix}\end{align}$
+# 
+# $\begin{align}
+# \vec{w} = 
+# \begin{bmatrix}
+# -1 \\
+# 2 
+# \end{bmatrix}
+# \end{align}$
+# 
+# $\begin{align}
+# \vec{b} = 
+# \begin{bmatrix}
+# 1 \\
+# 0 
+# \end{bmatrix}
+# \end{align}$
+# 
+# $\vec{v}$ & $\vec{w}$ can be rewritten as a 2 x 2 matrix $A$ and $x$ would be the 2 x 1 matrix of the scalars $c$ & $d$. The matrix multiplication of the two would give then resultant vector $\vec{b}$.
+# 
+# $\begin{align}
+# Ax = \vec{b}
+# \end{align}$
+# 
+# $\begin{align}
+# \begin{bmatrix}
+# 2 & -1 \\
+# -1 & 2
+# \end{bmatrix} .
+# \begin{bmatrix}
+# c \\
+# d
+# \end{bmatrix}= 
+# \begin{bmatrix}
+# 1 \\
+# 0
+# \end{bmatrix}
+# \end{align}$
+
+# In[95]:
+
+
+A = np.array([[2, -1],
+              [-1, 2]])
+
+b = np.array([1, 0])
+
+print("Solution = ", np.linalg.solve(A, b))
 
 
 # In[ ]:
