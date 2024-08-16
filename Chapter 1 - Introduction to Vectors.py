@@ -224,3 +224,76 @@ fig.update_layout(xaxis = dict(range = [-6,6], title = "X"),
                   width = 800,
                   height = 800)
 
+
+# ### Vectors in 3 - Dimensions
+# The principles mentioned earlier are the same for vectors with 3 components.<br>
+# $\begin{align}
+# \vec{v} = 
+# \begin{bmatrix}
+# v1 \\
+# v2 \\
+# v3\end{bmatrix}   
+# \end{align}$ 
+# 
+# Vector Addition example:
+# 
+
+# In[51]:
+
+
+v = np.array([1, 1, -1])
+w = np.array([2, 3, 4])
+
+print("V + W =",v+w)
+
+fig = go.Figure()
+
+fig.add_trace(go.Scatter3d(x = [0, v[0]],
+                         y = [0, v[1]],
+                         z = [0, v[2]],
+                         mode = "lines+markers",
+                         marker = dict(size = 4),
+                         line = dict(color = 'red', width = 4, dash = "dot")))
+
+fig.add_trace(go.Scatter3d(x = [0, -v[0]],
+                         y = [0, -v[1]],
+                         z = [0, -v[2]],
+                         mode = "lines+markers",
+                         marker = dict(size = 4),
+                         line = dict(color = 'red', width = 4, dash = "dot")))
+
+fig.add_trace(go.Scatter3d(x = [0, w[0]],
+                         y = [0, w[1]],
+                         z = [0, w[2]],
+                         mode = "lines+markers",
+                         marker = dict(size = 4),
+                         line = dict(color = 'blue', width = 4, dash = "dot")))
+
+fig.add_trace(go.Scatter3d(x = [0, -w[0]],
+                         y = [0, -w[1]],
+                         z = [0, -w[2]],
+                         mode = "lines+markers",
+                         marker = dict(size = 4),
+                         line = dict(color = 'blue', width = 4, dash = "dot")))
+
+fig.update_layout(
+    scene = dict(
+        xaxis = dict(range=[-6,6], title = "X"),
+        yaxis = dict(range=[-6,6], title = "Y"),
+        zaxis = dict(range=[-6,6], title = "Z")
+        ),
+    title = "3D Vector"
+)
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
