@@ -381,7 +381,7 @@ vector_in_place(1,2,0)
 # \end{bmatrix}
 # \end{align}$
 
-# In[95]:
+# In[99]:
 
 
 A = np.array([[2, -1],
@@ -389,7 +389,9 @@ A = np.array([[2, -1],
 
 b = np.array([1, 0])
 
-print("Solution = ", np.linalg.solve(A, b))
+print("Solution = ",
+      
+      np.linalg.solve(A, b))
 
 
 # In[ ]:
