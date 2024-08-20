@@ -389,13 +389,84 @@ A = np.array([[2, -1],
 
 b = np.array([1, 0])
 
-print("Solution = ",
-      
-      np.linalg.solve(A, b))
+print("Solution = ", np.linalg.solve(A, b))
 
 
-# In[ ]:
+# 3. What combination of  
+# $\begin{align}
+# c\begin{bmatrix}
+# 1 \\
+# 2
+# \end{bmatrix}+d\begin{bmatrix}
+# 3 \\
+# 1
+# \end{bmatrix}
+# \end{align}$
+# produces
+# $\begin{align}
+# \begin{bmatrix}
+# 14 \\
+# 8
+# \end{bmatrix}?
+# \end{align}$
+
+# In[100]:
 
 
+A = np.array([[1, 2],
+              [3, 1]])
 
+b = np.array([14, 8])
+
+print("Solution = ", np.linalg.solve(A, b))
+
+
+# 4. Find vectors $\vec{v}$ and $\vec{w}$ so that $\vec{v} + \vec{w} = (4,5,6)$ and $\vec{v} - \vec{w} = (2,5,8)$
+# Solution:
+# 
+# $\vec{v} = (v1, v2 ,v3)$<br>
+# $\vec{w} = (w1, w2 ,w3)$<br>
+# 
+# $\vec{v} + \vec{w} = (v1+w1, v2+w2, v3+w3) = (4, 5, 6)$<br>
+# $\vec{v} - \vec{w} = (v1-w1, v2-w2, v3-w3) = (2, 5, 8)$
+
+# In[104]:
+
+
+A = np.array([[1, 1],
+              [1, -1]])
+b1 = np.array([4, 2])
+b2 = np.array([5, 5])
+b3 = np.array([6, 8])
+
+v1, w1 = np.linalg.solve(A, b1)
+v2, w2 = np.linalg.solve(A, b2)
+v3, w3 = np.linalg.solve(A, b3)
+
+print('V = ', (v1,v2,v3))
+print('W = ', (w1,w2,w3))
+
+
+# 5. Find two different combinations of the three vectors $\vec{u} = (1,3)$ and $\vec{v} = (2, 7)$ and $\vec{w} = (1,5)$ that produce $\vec{b} = (0,1)$.
+
+# In[125]:
+
+
+A = np.array([
+    [1, 2, 1],
+    [3, 7, 5]
+])
+
+B = np.array([0, 1])
+
+# Since the number of unknowns are more than knowns we have infinite solutions
+solution = np.linalg.lstsq(A, B, rcond=None)[0]
+
+print("Particular solution:", solution)
+
+# Null space of A (to find the general solution) that can be used to find infinite solutions
+null_space = np.linalg.svd(A)[2].T[:, 2]
+
+print("Alternate solution 1:", solution + null_space)
+print("Alternate solution 2:", solution + 2*null_space)
 
