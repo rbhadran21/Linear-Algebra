@@ -1,6 +1,15 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# In[2]:
+
+
+import pandas as pd
+import numpy as np
+import plotly.graph_objects as go
+from scipy.spatial.distance import cosine
+
+
 # # Chapter 1: Introduction to Vectors
 
 # The heart of linear algebra lies in two operations:
@@ -15,14 +24,6 @@
 # Let there be two constants $c$ and $d$<br> 
 # We can multiply each vector by each constant to get: $c\mathbf{x} $ and $d\mathbf{y}$<br>
 # A linear combination is the combination of the two operations: $c\mathbf{x} + d\mathbf{y}$
-
-# In[2]:
-
-
-import pandas as pd
-import numpy as np
-import plotly.graph_objects as go
-
 
 # In[12]:
 
@@ -469,4 +470,118 @@ null_space = np.linalg.svd(A)[2].T[:, 2]
 
 print("Alternate solution 1:", solution + null_space)
 print("Alternate solution 2:", solution + 2*null_space)
+
+
+# ### Dot Products
+# Dot products is a way to multiply two vectors to get a single number which helps give sense to the direction of two vectors <br>
+# $\begin{align}
+# A.B = ||A||.||B||cos(\theta)
+# \end{align}$
+# 
+# * Where $||A||$ & $||B||$ are the lengths (magnitudes) of vectors $A$ & $B$<br>
+# * $\theta$ is the angle between the two vectors.
+# 
+# ###  Length of vectors:
+# The length of a vector is its magnitude, usually given by the $norm$ of the vector.<br>
+# $\begin{align}length(v) = ||v|| = \sqrt{v.v}\end{align}$
+# **Geometric Interpretation:<br>**
+# The dot product also tells us something about the angle between two vectors:
+# 
+# * **Positive dot product:** The angle between the vectors is less than $90\degree$, and the vectors are pointing more in the same direction.<br>
+# * **Zero dot product:** The vectors are perpendicular ($90\degree$ apart).<br>
+# * **Negative dot product:** The angle between the vectors is greater than $90\degree$, and the vectors are pointing in mostly opposite directions.
+# 
+# ### Angles between vector:
+# The angle between 2 vectors is given by the follow:<br>
+# $\begin{align}\theta = \cos^{-1}\left(\frac{\mathbf{A} \cdot \mathbf{B}}{\|\mathbf{A}\| \|\mathbf{B}\|}\right)\end{align}$
+
+# In[144]:
+
+
+## Examples of dot products and geometrics interpretation
+vector1 = np.array([3, 4])
+vector2 = np.array([6, 8])
+
+dot_product = np.dot(vector1, vector2)
+
+print(f"Dot product of {vector1} and {vector2} is: {dot_product}")
+
+fig = go.Figure()
+fig.add_trace(go.Scatter(x = [0, vector1[0]],
+                         y = [0, vector1[1]],
+                         mode = 'lines+markers',
+                         line = dict(color = "blue"),
+                         name = "vector1"))
+
+fig.add_trace(go.Scatter(x = [0, vector2[0]],
+                         y = [0, vector2[1]],
+                         mode = 'lines+markers',
+                         line = dict(color = "blue"),
+                         name = "vector2"))
+
+vector3 = np.array([3, 0])
+vector4 = np.array([0, 4])
+
+dot_product_perpendicular = np.dot(vector3, vector4)
+
+print(f"Dot product of {vector3} and {vector4} is: {dot_product_perpendicular}")
+
+fig.add_trace(go.Scatter(x = [0, vector3[0]],
+                         y = [0, vector3[1]],
+                         mode = 'lines+markers',
+                         line = dict(color = "red"),
+                         name = "vector3"))
+
+fig.add_trace(go.Scatter(x = [0, vector4[0]],
+                         y = [0, vector4[1]],
+                         mode = 'lines+markers',
+                         line = dict(color = "red"),
+                         name = "vector4"))
+
+vector5 = np.array([2, 3])
+vector6 = np.array([-2, -3])
+
+dot_product_opposite = np.dot(vector5, vector6)
+
+print(f"Dot product of {vector5} and {vector6} is: {dot_product_opposite}")
+
+fig.add_trace(go.Scatter(x = [0, vector5[0]],
+                         y = [0, vector5[1]],
+                         mode = 'lines+markers',
+                         line = dict(color = "green"),
+                         name = "vector5"))
+
+fig.add_trace(go.Scatter(x = [0, vector6[0]],
+                         y = [0, vector6[1]],
+                         mode = 'lines+markers',
+                         line = dict(color = "green"),
+                         name = "vector6"))
+
+fig.update_layout(xaxis = dict(range = [-6, 6]),
+                  yaxis = dict(range = [-6, 6]),
+                  width = 600,
+                  height = 800)
+
+fig.show()
+
+
+# In[157]:
+
+
+def angle_between_vectors(vector1, vector2):
+    dot_product = np.dot(vector1, vector2) ## calculating A.B
+    norm_vector1 = np.linalg.norm(vector1) ## calculating length(A)
+    norm_vector2 = np.linalg.norm(vector2) ## calculating length(B)
+    cos_theta = dot_product / (norm_vector1 * norm_vector2) 
+    angle_radians = np.arccos(cos_theta)   ## theta is returned in radians
+    angle_degrees = np.degrees(angle_radians) ## converting radians in degree (multipley by 57.32 or 180/pi)
+    
+    return angle_degrees
+
+vector1 = np.array([1, 2])
+vector2 = np.array([1, 3])
+
+angle = angle_between_vectors(vector1, vector2)
+
+print(f"The angle between {vector1} and {vector2} is: {angle:.2f} degrees")
 
